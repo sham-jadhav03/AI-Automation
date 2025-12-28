@@ -172,9 +172,10 @@ backend/
 All endpoints are prefixed with `/api`.
 
 ## Authentication
-- POST /auth/register
-- POST /auth/login
-- GET /auth/me
+- POST /users/register
+- POST /users/login
+- GET /users/profile
+- POST /users/logout
 
 ## Medicines
 - GET /medicines

@@ -66,13 +66,8 @@ export const profile = async (req, res) => {
 export const logout = async (req, res) => {
     try {
         const token = req.cookies?.token || req.headers.authorization?.split(' ')[1];
+        redisClient.set(token, 'logout', 'EX', 60 * 60 * 24);
 
-        if (token) {
-            // Set token in Redis blacklist with 24 hour expiration
-            await redisClient.set(token, 'blacklisted', 'EX', 86400);
-        }
-
-        res.clearCookie('token');
         res.status(200).json({ message: 'Logged out successfully' });
     } catch (err) {
         console.error('Logout error:', err);
