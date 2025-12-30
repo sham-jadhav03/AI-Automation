@@ -110,28 +110,28 @@ backend/
 │
 ├── src/
 │ │
-│ ├── config/
+│ ├── DB
 │ │ ├── db.js
-│ │ ├── env.js
-│ │ └── openai.js
+│ │ 
+│ │
 │ │
 │ ├── models/
-│ │ ├── User.model.js
-│ │ ├── Medicine.model.js
-│ │ ├── Inventory.model.js
-│ │ ├── Order.model.js
-│ │ ├── Prescription.model.js
-│ │ └── AILog.model.js
+│ │ ├── user.model.js
+│ │ ├── medicine.model.js
+│ │ ├── inventory.model.js
+│ │ ├── order.model.js
+│ │ ├── prescription.model.js
+│ │ └── ailog.model.js
 │ │
 │ ├── controllers/
-│ │ ├── auth.controller.js
+│ │ ├── user.controller.js
 │ │ ├── medicine.controller.js
 │ │ ├── inventory.controller.js
 │ │ ├── order.controller.js
 │ │ └── ai.controller.js
 │ │
 │ ├── routes/
-│ │ ├── auth.routes.js
+│ │ ├── user.routes.js
 │ │ ├── medicine.routes.js
 │ │ ├── inventory.routes.js
 │ │ ├── order.routes.js
@@ -144,6 +144,8 @@ backend/
 │ │ └── procurement.agent.js
 │ │
 │ ├── services/
+│ │ ├── redis.service.js
+│ │ ├── user.service.js
 │ │ ├── ai.service.js
 │ │ ├── prediction.service.js
 │ │ ├── prescription.service.js
