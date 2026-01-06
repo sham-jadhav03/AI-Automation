@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Outfit', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  /* "Moonlit Asteroid" nice dark theme */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add some background blobs for glassmorphism depth */
+.page::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(24, 183, 161, 0.4) 0%, rgba(24, 183, 161, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 20s infinite ease-in-out;
+}
+
+.page::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, rgba(102, 126, 234, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 15s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(30px, 30px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  z-index: 1;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+
+
+.page h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.page h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.page input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 1rem;
+  color: white;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.page input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.page input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.page button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #18b7a1 0%, #0e8676 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 1rem;
+  box-shadow: 0 4px 15px rgba(24, 183, 161, 0.3);
+}
+
+.page button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(24, 183, 161, 0.4);
+  filter: brightness(1.1);
+}
+
+.page button:active {
+  transform: translateY(0);
+}
+
+.page p {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+}
+
+.link-text {
+  color: #18b7a1;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+.link-text:hover {
+  color: #26D0CE;
+  text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 480px) {
+  .page {
+    padding: 1rem;
+  }
+
+  .form-container {
+    padding: 2rem;
+  }
+
+  .page h1 {
+    font-size: 2rem;
+  }
+}
