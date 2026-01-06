@@ -15,7 +15,14 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         select: false
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+        required: true
     }
+
 
 });
 
@@ -32,7 +39,8 @@ userSchema.methods.generateJWT = function () {
     return jwt.sign(
         {
             _id: this._id,
-            email: this.email
+            email: this.email,
+            role: this.role
         },
         process.env.JWT_SECRET,
         { expiresIn: "24h" }

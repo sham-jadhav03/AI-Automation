@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import redisClient from "../services/redis.service.js";
+import userModel from "../models/user.model.js";
 
 
 export const authUser = async (req, res, next) => {
@@ -13,19 +14,18 @@ export const authUser = async (req, res, next) => {
         const isBlackListed = await redisClient.get(token);
 
         if (isBlackListed) {
-
             res.cookie('token', '');
-
             return res.status(401).send({ error: 'Unauthorized User' });
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        const user = await userModel.findById(decoded._id);
+
         req.user = decoded;
         next();
+
     } catch (error) {
-
-        console.log(error);
-
-        res.status(401).send({ error: 'Unauthorized User' });
+        res.status(401).send({ error: error.message || 'Unauthorized User' });
     }
 }

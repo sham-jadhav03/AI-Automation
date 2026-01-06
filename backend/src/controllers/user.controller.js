@@ -50,6 +50,8 @@ export const login = async (req, res) => {
         const userResponse = user.toObject ? user.toObject() : user;
         delete userResponse.password;
 
+        res.cookie('token', token);
+
         res.status(200).json({ user: userResponse, token });
     } catch (err) {
         console.log(err);
