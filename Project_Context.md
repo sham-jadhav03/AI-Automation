@@ -90,6 +90,13 @@ The system should behave like an **expert pharmacist**.
 - `POST /users/logout`
 
 ---
+---
+
+### Medicine Routes (Completed)
+- `POST /medicine/create`
+- `GET /medicine/all`
+---
+
 
 ## Backend Folder Structure (Locked)
 
