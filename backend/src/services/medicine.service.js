@@ -1,6 +1,6 @@
 import medicineModel from "../models/medicine.model.js";
 
-export const createMedicineService = async ({ name, genericName, unitType, generic, prescriptionRequired }) => {
+export const createMedicineService = async ({ name, genericName, unitType, prescriptionRequired }) => {
     if (!name || !unitType) {
         throw new Error("All fields are required");
     }
@@ -9,7 +9,7 @@ export const createMedicineService = async ({ name, genericName, unitType, gener
         throw new Error("Prescription required must be a boolean");
     }
 
-    const slug = name.toLowerCase().replace(/\s/g, '-');
+    const slug = name.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s/g, '-');
 
     const existingMedicine = await medicineModel.findOne({ slug });
 

@@ -1,0 +1,5 @@
+name,genericName,unitType,prescriptionRequired,stockQuantity
+Paracetamol 500mg,Paracetamol,tablet,false,1000
+Amoxicillin 500mg,Amoxicillin,capsule,true,500
+Cough Syrup,Dextromethorphan,syrup,false,200
+Insulin Glargine,Insulin,injection,true,100
