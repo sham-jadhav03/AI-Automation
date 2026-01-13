@@ -1,45 +1,49 @@
 import mongoose from "mongoose";
 
 const inventorySchema = new mongoose.Schema({
-    stockName: {
+    medicine: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'medicine',
+        required: true,
+        index: true
+    },
+    batchNumber: {
         type: String,
         required: true,
-        unique: true
+        index: true
     },
-
-    stockId: {
-        type: String,
+    expiryDate: {
+        type: Date,
         required: true,
-        unique: true
+        index: true
     },
-
-    stockQuantity: {
+    quantityAvailable: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
     },
-    stockPrice: {
+    reorderThreshold: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
     },
-
-    stockDescription: {
-        type: String,
-        required: true
-    },
-    stockCategory: {
-        type: String,
-        required: true
-    },
-    stockSubCategory: {
-        type: String,
-        required: true
-    },
-    stockSupplier: {
+    supplier: {
         type: String,
         required: true
     }
 
-});
+},
+    {
+        timestamps: true
+    }
+);
+
+inventorySchema.index({
+    medicine: 1,
+    batchNumber: 1,
+},
+    { unique: true }
+)
 
 const Inventory = mongoose.model('inventory', inventorySchema)
 
