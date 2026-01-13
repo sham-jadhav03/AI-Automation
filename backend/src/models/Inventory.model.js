@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const inventorySchema = new mongoose.Schema({
     medicine: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'medicine',
+        ref: 'Medicine',
         required: true,
         index: true
     },

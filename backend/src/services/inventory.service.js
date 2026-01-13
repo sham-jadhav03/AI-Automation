@@ -1,7 +1,7 @@
 import Inventory from "../models/Inventory.model.js";
 import Medicine from "../models/medicine.model.js";
 
-export const addInventoryBatch = async (data) => {
+export const addInventoryBatch = async (data = {}) => {
     const {
         medicine,
         batchNumber,
@@ -56,7 +56,6 @@ export const addInventoryBatch = async (data) => {
 
     return inventory;
 };
-
 
 export const getLowStockInventory = async () => {
     const lowStockItems = await Inventory.find({
