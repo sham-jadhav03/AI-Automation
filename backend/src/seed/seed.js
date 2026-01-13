@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { ingestMedicines } from '../services/csv.service.js';
-import connectDB from '../config/db.js';
+import connectDB from '../db/db.js';
 
 dotenv.config();
 

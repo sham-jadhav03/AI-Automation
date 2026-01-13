@@ -1,11 +1,27 @@
 import { Router } from "express";
 import * as inventoryController from "../controllers/inventory.controller.js";
-import { body } from "express-validator";
 import * as authMiddleware from "../middlewares/auth.middleware.js";
+import * as roleMiddleware from "../middlewares/role.middleware.js";
 
 const router = Router();
 
+// Access: Admin only
 router.post('/create',
-    inventoryController.createInventory);
+    authMiddleware.authUser,
+    roleMiddleware.authorizeRoles('admin'),
+    inventoryController.createInventoryBatch
+);
 
-export default router
+router.get('/low-stock',
+    authMiddleware.authUser,
+    roleMiddleware.authorizeRoles('admin'),
+    inventoryController.getLowStockInventory
+);
+
+router.get('/expiry',
+    authMiddleware.authUser,
+    roleMiddleware.authorizeRoles('admin'),
+    inventoryController.getExpiringInventory
+);
+
+export default router;

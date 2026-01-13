@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import http from 'http';
 import app from './app.js';
-import connect from './config/db.js';
+import connect from './db/db.js';
 
 connect();
 
