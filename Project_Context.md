@@ -92,10 +92,12 @@ The system should behave like an **expert pharmacist**.
 ---
 ---
 
-### Medicine Routes (Completed)
-- `POST /medicine/create`
-- `GET /medicine/all`
----
+### Medicine & Inventory Routes (Completed)
+- `POST /medicines/create`
+- `GET /medicines/get-all`
+- `POST /inventory/create` (Admin)
+- `GET /inventory/low-stock` (Admin)
+- `GET /inventory/expiry` (Admin)
 
 
 ## Backend Folder Structure (Locked)
@@ -184,7 +186,9 @@ backend/
 - ✅ **Backend initialized**
 - ✅ **Auth + JWT + Redis complete**
 - ✅ **RBAC foundation added**
-- 🔜 **Medicine Master Data is NEXT**
+- ✅ **Medicine Master Data + APIs** (Basic implementation)
+- ✅ **Inventory Services + APIs** (Batches, Expiry, Low Stock)
+- 🔜 **Order Processing is NEXT**
 
 ---
 

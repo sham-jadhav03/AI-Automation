@@ -45,6 +45,8 @@ inventorySchema.index({
     { unique: true }
 )
 
-const Inventory = mongoose.model('inventory', inventorySchema)
+const Inventory =
+    mongoose.models.inventory ||
+    mongoose.model("inventory", inventorySchema);
 
 export default Inventory;

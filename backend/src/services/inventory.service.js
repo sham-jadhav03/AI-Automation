@@ -79,3 +79,70 @@ export const getExpiringInventory = async (days = 30) => {
 
     return expiringItems;
 };
+
+export const adjustInventoryOnSale = async (medicineId, quantity) => {
+    const medicineExists = await Medicine.findById(medicineId);
+    if (!medicineExists) {
+        throw new Error(`Medicine with ID ${medicineId} not found`);
+    }
+    if (quantity <= 0) {
+        throw new Error("Quantity to deduct must be greater than zero");
+    }
+
+    const batches = await Inventory.find({
+        medicine: medicineId,
+        quantityAvailable: { $gt: 0 }
+    }).sort({ expiryDate: { $gt: new Date() } }
+    );
+
+    const totalAvailable = batches.reduce((sum, batch) => sum + batch.quantityAvailable, 0);
+
+    if (totalAvailable < quantity) {
+        throw new Error(`Insufficient stock. Available: ${totalAvailable}, Requested: ${quantity}`);
+    }
+
+    let remainingToDeduct = quantity;
+    const consumedBatches = [];
+
+    for (const batch of batches) {
+        if (remainingToDeduct <= 0) break;
+
+        const deduction = Math.min(batch.quantityAvailable, remainingToDeduct);
+
+        batch.quantityAvailable -= deduction;
+        remainingToDeduct -= deduction;
+
+        await batch.save();
+
+        consumedBatches.push({
+            batchNumber: batch.batchNumber,
+            deducted: deduction
+        });
+    }
+
+    return {
+        medicine: medicineId,
+        requestedQuantity: quantity,
+        consumedBatches
+    };
+};
+
+export const restockInventory = async (batchId, quantity) => {
+    if (!batchId) {
+        throw new Error("Batch ID is required");
+    }
+    if (quantity <= 0) {
+        throw new Error("Restock quantity must be greater than zero");
+    }
+
+    const batch = await Inventory.findById(batchId);
+
+    if (!batch) {
+        throw new Error(`Inventory batch with ID ${batchId} not found`);
+    }
+
+    batch.quantityAvailable += quantity;
+    await batch.save();
+
+    return batch;
+};
