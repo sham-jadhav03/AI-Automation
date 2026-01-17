@@ -1,4 +1,4 @@
-import Inventory from "../models/Inventory.model.js";
+import Inventory from "../models/inventory.model.js";
 import Medicine from "../models/medicine.model.js";
 
 export const addInventoryBatch = async (data = {}) => {
@@ -91,9 +91,9 @@ export const adjustInventoryOnSale = async (medicineId, quantity) => {
 
     const batches = await Inventory.find({
         medicine: medicineId,
-        quantityAvailable: { $gt: 0 }
-    }).sort({ expiryDate: { $gt: new Date() } }
-    );
+        quantityAvailable: { $gt: 0 },
+        expiryDate: { $gt: new Date() }
+    }).sort({ expiryDate: 1 });
 
     const totalAvailable = batches.reduce((sum, batch) => sum + batch.quantityAvailable, 0);
 

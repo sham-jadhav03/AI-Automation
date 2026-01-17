@@ -10,9 +10,7 @@ router.use(authUser);
 
 router.post("/create", orderController.createOrderController);
 router.get("/get-my-orders", orderController.getMyOrdersController);
-router.get("/:orderId", orderController.getOrderByIdController);
-
-// Admin Route
 router.get("/admin", authorizeRoles("admin"), orderController.getAllOrdersController);
+router.get("/:orderId", orderController.getOrderByIdController);
 
 export default router;
