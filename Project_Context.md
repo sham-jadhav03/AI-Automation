@@ -191,11 +191,3 @@ backend/
 - 🔜 **Order Processing is NEXT**
 
 ---
-
-## Instruction to IDE / AI
-
-- **Think in systems**, not snippets.
-- **Do not oversimplify.**
-- **Do not bypass APIs.**
-- **Respect folder structure.**
-- **Write production‑style code.**
