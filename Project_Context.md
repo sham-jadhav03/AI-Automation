@@ -51,10 +51,11 @@ The system should behave like an **expert pharmacist**.
 - **LangChain** (agents + tools)
 - **LangSmith** (mandatory observability)
 
-### Frontend (Later)
-- **Web-first UI**
-- **User chat interface**
-- **Admin monitoring dashboard**
+### Frontend (Active)
+- **Vite + React**
+- **TailwindCSS / Custom CSS**
+- **Context API** (State Management)
+- **React Router**
 
 ---
 
@@ -90,7 +91,6 @@ The system should behave like an **expert pharmacist**.
 - `POST /users/logout`
 
 ---
----
 
 ### Medicine & Inventory Routes (Completed)
 - `POST /medicines/create`
@@ -99,6 +99,12 @@ The system should behave like an **expert pharmacist**.
 - `GET /inventory/low-stock` (Admin)
 - `GET /inventory/expiry` (Admin)
 
+### Order Routes (Completed)
+- `POST /orders/create` (Transactional)
+- `GET /orders/history`
+- `GET /orders/:id`
+
+---
 
 ## Backend Folder Structure (Locked)
 
@@ -107,25 +113,57 @@ backend/
 ├── src/
 │   ├── app.js
 │   ├── server.js
-│   ├── config/db.js
+│   ├── db/
+│   │   └── db.js
 │   ├── models/
-│   │   ├── User.model.js
-│   │   ├── Medicine.model.js
-│   │   ├── Inventory.model.js
-│   │   ├── Order.model.js
-│   │   └── OrderHistory.model.js
+│   │   ├── user.model.js
+│   │   ├── medicine.model.js
+│   │   ├── inventory.model.js
+│   │   └── order.model.js
 │   ├── routes/
+│   │   ├── user.routes.js
+│   │   ├── medicine.routes.js
+│   │   ├── inventory.routes.js
+│   │   └── order.routes.js
 │   ├── controllers/
+│   │   ├── user.controller.js
+│   │   ├── medicine.controller.js
+│   │   ├── inventory.controller.js
+│   │   └── order.controller.js
 │   ├── middlewares/
 │   │   ├── auth.middleware.js
-│   │   └── role.middleware.js (to be added when admin routes start)
+│   │   └── role.middleware.js
 │   ├── services/
 │   │   ├── csv.service.js
-│   │   └── inventory.service.js
+│   │   ├── inventory.service.js
+│   │   ├── medicine.service.js
+│   │   └── order.service.js
 │   └── seed/
 │       ├── medicines.csv
 │       ├── order_history.csv
 │       └── seed.js
+```
+
+## Frontend Folder Structure (Active)
+
+```text
+frontend/
+├── src/
+│   ├── auth/
+│   │   └── UserAuth.jsx
+│   ├── context/
+│   │   └── UserContext.jsx
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Admin.jsx
+│   │   ├── Login.jsx
+│   │   └── Signup.jsx
+│   ├── routes/
+│   │   └── AppRoute.jsx
+│   ├── styles/
+│   │   └── index.css
+│   ├── App.jsx
+│   └── main.jsx
 ```
 
 ---
@@ -170,14 +208,14 @@ backend/
 
 ## Development Order (Strict)
 
-1. Backend schemas + APIs
-2. CSV ingestion
-3. Medicine & inventory APIs
-4. Order & history APIs
-5. AI tools
-6. LangChain agents
-7. LangSmith observability
-8. Frontend
+1. Backend schemas + APIs ✅
+2. CSV ingestion ✅
+3. Medicine & inventory APIs ✅
+4. Order & history APIs ✅
+5. Frontend Integration (In Progress) 🔄
+6. AI tools
+7. LangChain agents
+8. LangSmith observability
 
 ---
 
@@ -186,9 +224,11 @@ backend/
 - ✅ **Backend initialized**
 - ✅ **Auth + JWT + Redis complete**
 - ✅ **RBAC foundation added**
-- ✅ **Medicine Master Data + APIs** (Basic implementation)
-- ✅ **Inventory Services + APIs** (Batches, Expiry, Low Stock)
-- 🔜 **Order Processing is NEXT**
+- ✅ **Medicine Master Data + APIs**
+- ✅ **Inventory Services + APIs**
+- ✅ **Order Processing Core** (Models, Services, Controllers Implementation)
+- � **Frontend Development Active** (Pages, Routing, Auth Context)
+- 🔜 **AI Agent Integration is NEXT**
 
 ---
 
@@ -199,3 +239,4 @@ backend/
 - **Do not bypass APIs.**
 - **Respect folder structure.**
 - **Write production‑style code.**
+
