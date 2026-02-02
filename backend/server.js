@@ -3,7 +3,7 @@ dotenv.config();
 
 import http from 'http';
 import app from './src/app.js';
-import connect from './src/db/db.js';
+import connect from './src/config/db.js';
 
 connect();
 
