@@ -113,7 +113,7 @@ backend/
 ├── src/
 │   ├── app.js
 │   ├── server.js
-│   ├── db/
+│   ├── config/
 │   │   └── db.js
 │   ├── models/
 │   │   ├── user.model.js
