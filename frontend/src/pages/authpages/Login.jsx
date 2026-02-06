@@ -1,20 +1,19 @@
 import { useNavigate, Link } from "react-router-dom";
-import "../styles/login.css";
+import "../../styles/login.css";
 import { useContext, useState } from "react";
-import axios from "../config/axios";
-import { UserContext } from "../context/UserContext";
+import axios from "../../config/axios";
+import { UserContext } from "../../context/UserContext";
 
-export default function Signup() {
+export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
   const { setUser } = useContext(UserContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios.post('users/register', {
+    axios.post('users/login', {
       email,
       password
     }).then((res) => {
@@ -29,22 +28,22 @@ export default function Signup() {
     }).catch((err) => {
       console.log(err);
     })
-  };
+  }
 
   return (
     <div className="auth-container">
       <div className="auth-visual">
         <div className="visual-content">
           <h1>Mediloon</h1>
-          <p>Join thousands of medical professionals managing their workflow efficiently.</p>
+          <p>Experience the future of medical management with our state-of-the-art platform.</p>
         </div>
       </div>
 
       <div className="auth-form-side">
         <div className="auth-form-container">
           <div className="auth-header">
-            <h2>Create Account</h2>
-            <p>Get started with your free account today.</p>
+            <h2>Welcome back</h2>
+            <p>Please enter your details to sign in.</p>
           </div>
 
           <form onSubmit={handleSubmit}>
@@ -67,14 +66,14 @@ export default function Signup() {
               />
             </div>
             <button className="submit-btn" type="submit">
-              Sign Up
+              Login
             </button>
           </form>
 
           <p className="auth-footer">
-            Already have an account?
-            <Link to="/login" className="auth-link">
-              Login
+            Don’t have an account?
+            <Link to="/signup" className="auth-link">
+              Sign Up
             </Link>
           </p>
         </div>
