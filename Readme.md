@@ -154,10 +154,11 @@ frontend/
 │   ├── context/
 │   │   └── UserContext.jsx
 │   ├── pages/
-│   │   ├── Home.jsx
+│   │   ├── authpages/
+│   │   │      ├──Login.jsx
+│   │   │      └──Signup.jsx
 │   │   ├── Admin.jsx
-│   │   ├── Login.jsx
-│   │   └── Signup.jsx
+│   │   └── Home.jsx
 │   ├── routes/
 │   │   └── AppRoute.jsx
 │   ├── styles/
